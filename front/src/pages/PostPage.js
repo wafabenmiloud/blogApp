@@ -10,7 +10,7 @@ export default function PostPage() {
   const {userInfo} = useContext(UserContext);
   const {id} = useParams();
   useEffect(() => {
-    fetch(`https://blogapp-d66m.onrender.com/post/${id}`)
+    fetch(`http://localhost:8000/post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setPostInfo(postInfo);
@@ -23,7 +23,7 @@ export default function PostPage() {
   return (
     <div className="post-page">
        <div className="image">
-        <img src={`https://blogapp-d66m.onrender.com/${postInfo.cover}`} alt=""/>
+        <img src={`http://localhost:8000/${postInfo.cover}`} alt=""/>
       </div>
       <h1>{postInfo.title}</h1>
       <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
