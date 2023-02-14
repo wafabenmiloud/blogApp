@@ -12,7 +12,7 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const app = express();
 dotenv.config();
 
-app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cors({credentials:true,origin:'https://blog-app-sooty-theta.vercel.app'}));
 app.use(express.json());
 app.use(cookieParser());
 
