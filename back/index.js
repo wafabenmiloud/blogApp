@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //clien side origin
-app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cors({credentials:true,origin:'https://localhost:3000'}));
 
 //upload image
 const uploadMiddleware = multer({ dest: 'uploads/' });
