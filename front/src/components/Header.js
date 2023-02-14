@@ -7,7 +7,7 @@ import logo from "../assets/Amanda.png";
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:8000/profile", {
+    fetch("https://blogapp-d66m.onrender.com/profile", {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -17,7 +17,7 @@ export default function Header() {
   });
 
   function logout() {
-    fetch("http://localhost:8000/logout", {
+    fetch("https://blogapp-d66m.onrender.com/logout", {
       credentials: "include",
       method: "POST",
     });
