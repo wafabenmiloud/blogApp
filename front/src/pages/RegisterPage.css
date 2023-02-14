@@ -5,6 +5,7 @@
     justify-content: center;
     height: 60vh;
     background-color: transparent;
+    margin-bottom: 8rem;
 }
 .auth form {
     display: flex;
@@ -12,7 +13,8 @@
     padding: 50px;
     background-color: white;
     width: 400px;
-    gap: 40px;}
+    gap: 20px;
+  }
 
     .auth input {
       padding: 10px;
@@ -23,7 +25,12 @@
     .auth button {
       padding: 10px;
       border: none;
-      background-color: orangered;
+      background-color: #FF8749;
       cursor: pointer;
       color: white;
+    }
+    h3{
+      text-align: center;
+      color: #FF8749;
+
     }

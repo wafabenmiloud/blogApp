@@ -1,0 +1,7 @@
+.createpost button{
+    background-color: #FF8749;
+    color: white;
+}
+.createpost input {
+   border: none;
+}

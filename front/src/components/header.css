@@ -1,0 +1,82 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  align-items: center;
+}
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+header .logo {
+  width: 17rem;
+}
+header nav {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+header .logout {
+  color: teal;
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+header .logout:hover {
+  cursor: pointer;
+}
+header button {
+    background-color: transparent;
+    border: 1px solid teal;
+    box-sizing: border-box;
+    color: teal;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    padding: 16px 23px;
+    position: relative;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+
+header button:hover,
+header button:active {
+  outline: 0;
+}
+
+header button:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+header button:before {
+  background-color: #D5EDF6;
+  content: "";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+}
+
+header button:hover:before {
+  background-color: rgb(150, 246, 246);
+}
+
+header .link, header .link2{
+color: teal;
+}
+header .link:hover, header .link2:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  }
+header .link2{
+  margin-left: 2rem;
+}

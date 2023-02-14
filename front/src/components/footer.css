@@ -1,0 +1,16 @@
+footer {
+    margin: 2rem 0 0 0;
+    padding: 3rem;
+    background-color: teal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+}
+    footer img {
+      height: 3rem;
+    }
+  footer span {
+    color: white;
+    text-decoration: underline;
+  }

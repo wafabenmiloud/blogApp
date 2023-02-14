@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import {Navigate, useParams} from "react-router-dom";
 import Editor from "../components/Editor";
-
+import "./createpost.css";
+import { ImFilePicture } from "react-icons/im";
 export default function EditPost() {
   const {id} = useParams();
   const [title,setTitle] = useState('');
@@ -46,7 +47,7 @@ export default function EditPost() {
   }
 
   return (
-    <form onSubmit={updatePost}>
+    <form className="createpost" onSubmit={updatePost}>
       <input type="title"
              placeholder={'Title'}
              value={title}
@@ -55,10 +56,15 @@ export default function EditPost() {
              placeholder={'Summary'}
              value={summary}
              onChange={ev => setSummary(ev.target.value)} />
+              <label htmlFor="fileInput">
+        <ImFilePicture  style={{ fontSize: "1.5rem", margin:"1rem", cursor:"pointer" }} />
+      </label>
       <input type="file"
+       id="fileInput"
+       style={{ display: "none" }}
              onChange={ev => setFiles(ev.target.files)} />
       <Editor onChange={setContent} value={content} />
-      <button style={{marginTop:'5px'}}>Update post</button>
+      <button style={{marginTop:'5px', fontWeight: "bold"}}>Update post</button>
     </form>
   );
 }
