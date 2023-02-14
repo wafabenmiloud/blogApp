@@ -26,8 +26,8 @@ export default function Post({
   <div>
   <h1>{title}</h1>
    <p className="info">
-     <a className="author">@{author.username}</a><br/>
-     <time className="author">Created at {formatISO9075(new Date(createdAt))}</time>
+     <h4 className="author">@{author.username}<br/>
+     <time className="author">Created at {formatISO9075(new Date(createdAt))}</time></h4>
    </p>
   </div>
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../UserContext";
 import { AiOutlineLogout } from "react-icons/ai";
 import "./header.css";
@@ -14,7 +14,7 @@ export default function Header() {
         setUserInfo(userInfo);
       });
     });
-  }, []);
+  });
 
   function logout() {
     fetch("http://localhost:8000/logout", {
