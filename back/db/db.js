@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
  
 
-const Connection = (username,password) => {
-  const URL = `mongodb+srv://${username}:${password}@blog-app.ngmedr4.mongodb.net/?retryWrites=true&w=majority`;
+const Connection = (mongoURI) => {
+  const URL = mongoURI;
   try {
     mongoose.set('strictQuery', true);
     mongoose.connect(URL, {

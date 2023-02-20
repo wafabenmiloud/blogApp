@@ -1,6 +1,10 @@
 import './App.css';
+import {
+  Routes,
+  Route,
+ 
+} from "react-router-dom";
 
-import {Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
@@ -9,6 +13,7 @@ import {UserContextProvider} from "./UserContext";
 import CreatePost from "./pages/CreatePost";
 import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
+
 
 function App() {
   return (

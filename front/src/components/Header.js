@@ -2,29 +2,29 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../UserContext";
 import { AiOutlineLogout } from "react-icons/ai";
+import axios from "axios";
+
 import "./header.css";
 import logo from "../assets/Amanda.png";
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:8000/profile", {
-      credentials: "include",
-    }).then((response) => {
-      response.json().then((userInfo) => {
-        setUserInfo(userInfo);
-      });
-    });
+    axios.get('http://localhost:8000/profile')
+  .then(response => {
+    setUserInfo(response.data);
+  })
+  .catch(error => {
+    console.error('An error occurred:', error);
   });
+  },[]);
 
   function logout() {
-    fetch("http://localhost:8000/logout", {
-      credentials: "include",
-      method: "POST",
-    });
+    axios.post('http://localhost:8000/logout');
     setUserInfo(null);
   }
 
   const username = userInfo?.username;
+  console.log(username)
 
   return (
     <header>

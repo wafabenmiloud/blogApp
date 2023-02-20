@@ -4,19 +4,22 @@ import {formatISO9075} from "date-fns";
 import {UserContext} from "../UserContext";
 import {Link} from 'react-router-dom';
 import { FiEdit } from "react-icons/fi";
+import axios from "axios";
 
 export default function PostPage() {
   const [postInfo,setPostInfo] = useState(null);
   const {userInfo} = useContext(UserContext);
   const {id} = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8000/post/${id}`)
-      .then(response => {
-        response.json().then(postInfo => {
-          setPostInfo(postInfo);
-        });
-      });
+    axios.get(`http://localhost:8000/post/${id}`)
+  .then(response => {
+      setPostInfo(response.data);
+    })
+  .catch(error => {
+    console.error('An error occurred:', error);
   });
+
+  },[]);
 
   if (!postInfo) return '';
 

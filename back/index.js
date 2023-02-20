@@ -16,16 +16,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 //clien side origin
-app.use(cors({credentials:true,origin:'https://localhost:3000'}));
+app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 
 //upload image
 const uploadMiddleware = multer({ dest: 'uploads/' });
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 //Database
-const username = process.env.DB_USERNAME;
-const password = process.env.DB_PASSWORD;
-Connection(username,password);
+const mongoURI = process.env.MONGODB_URI;
+Connection(mongoURI);
 
 //user API
 app.post('/register', signupUser);
