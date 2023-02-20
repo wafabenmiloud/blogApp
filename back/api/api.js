@@ -2,13 +2,13 @@ const dotenv = require('dotenv');
 const bcrypt = require ('bcrypt');
 const jwt = require('jsonwebtoken');
 const express = require('express');
-const Token = require('../model/token');
 const fs = require('fs');
-const User = require('../model/user');
+const { User, validate } = require('../model/user');
 const Post = require('../model/post');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const Joi = require("joi");
 
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
@@ -19,43 +19,56 @@ dotenv.config();
 //User API 
 
 const signupUser = async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+	try {
+		const { error } = validate(req.body);
+		if (error)
+			return res.status(400).send({ message: error.details[0].message });
 
-    const user = { username: req.body.username, email: req.body.email,age:req.body.age, password: hashedPassword };
-    const newUser = new User(user);
-    newUser.save((err) => {
-      if (err) {
-        return res.status(500).json({ msg: 'error adding user' });
-      }
-      return res.status(200).json({ msg: 'user added successfully' });
-    });
-  } catch (err) {
-    return res.status(500).json({ msg: 'error adding user' });
-  }
+		const user = await User.findOne({ email: req.body.email });
+		if (user)
+			return res
+				.status(409)
+				.send({ message: "User with given email already Exist!" });
+
+		const salt = await bcrypt.genSalt(Number(process.env.SALT));
+		const hashPassword = await bcrypt.hash(req.body.password, salt);
+
+		await new User({ ...req.body, password: hashPassword }).save();
+		res.status(201).send({ message: "User created successfully" });
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+};
+const validatee = (data) => {
+	const schema = Joi.object({
+		email: Joi.string().email().required().label("Email"),
+		password: Joi.string().required().label("Password"),
+	});
+	return schema.validate(data);
 };
 const signinUser = async (req, res) => {
-  try {
-    const user = await User.findOne({ username: req.body.username });
-    if (!user) {
-      return res.status(400).json({ msg: 'Username does not match' });
-    }
+	try {
+		const { error } = validatee(req.body);
+		if (error)
+			return res.status(400).send({ message: error.details[0].message });
 
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (!match) {
-      return res.status(400).json({ msg: 'Password does not match' });
-    }
+		const user = await User.findOne({ email: req.body.email });
+		if (!user)
+			return res.status(401).send({ message: "Invalid Email or Password" });
 
-    const accessToken = jwt.sign({ userId: user._id }, process.env.ACCESS_SECRET_KEY, { expiresIn: '30m' });
-    const refreshToken = jwt.sign({ userId: user._id }, process.env.REFRESH_SECRET_KEY);
+		const validPassword = await bcrypt.compare(
+			req.body.password,
+			user.password
+		);
+		if (!validPassword)
+			return res.status(401).send({ message: "Invalid Email or Password" });
 
-    await Token.create({ token: refreshToken });
-
-    return res.status(200).json({ accessToken, refreshToken, email: user.email, username: user.username, age:user.age });
-  } catch (error) {
-    return res.status(500).json({ msg: 'Error while logging in the user' });
-  }
-};
+		const token = user.generateAuthToken();
+		res.status(200).send({ data: token, message: "logged in successfully" });
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+}
 const authenticateToken = async (req,res,next)=>{
   const authHeader = req.headers['Authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -71,21 +84,6 @@ jwt.verify(token, process.env.ACCESS_SECRET_KEY, (error, user) => {
   next();
 })
 }
-
-const profile = (req,res) => {
-  const authHeader = req.headers['Authorization'];
-
-  const token = authHeader && authHeader.split(' ')[1];
-  
-    jwt.verify(token, process.env.ACCESS_SECRET_KEY, {}, (err,info) => {
-      if (err) throw err;
-      res.json(info);
-    });
-  };
-const logout = (req,res) => {
-    res.cookie('token', '').json('ok');
-  };
-
 // Post API
 const addPost = async (req,res) => {
     const {originalname,path} = req.file;
@@ -96,7 +94,7 @@ const addPost = async (req,res) => {
     const authHeader = req.headers['Authorization'];
 
     const token = authHeader && authHeader.split(' ')[1];
-    jwt.verify(token, process.env.ACCESS_SECRET_KEY, {}, async (err,info) => {
+    jwt.verify(token, process.env.JWTPRIVATEKEY, {}, async (err,info) => {
       if (err) throw err;
       const {title,summary,content} = req.body;
       const postDoc = await Post.create({
@@ -122,7 +120,7 @@ const updatePost = async (req,res) => {
     const authHeader = req.headers['Authorization'];
 
     const token = authHeader && authHeader.split(' ')[1];
-    jwt.verify(token, process.env.ACCESS_SECRET_KEY, {}, async (err,info) => {
+    jwt.verify(token, process.env.JWTPRIVATEKEY, {}, async (err,info) => {
       if (err) throw err;
       const {id,title,summary,content} = req.body;
       const postDoc = await Post.findById(id);
@@ -155,4 +153,4 @@ const getPost = async (req,res) => {
     res.json(postDoc);
   }
 
-module.exports = {signupUser,signinUser, profile, logout, addPost, updatePost, getPost,getPostByID};
+module.exports = {signupUser,signinUser, addPost, updatePost, getPost,getPostByID};

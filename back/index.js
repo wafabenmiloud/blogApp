@@ -7,7 +7,7 @@ const multer = require('multer');
 
 //import db config and api functions
 const Connection = require('./db/db');
-const { signupUser, signinUser, profile, logout,addPost, updatePost, getPost, getPostByID } = require('./api/api');
+const { signupUser, signinUser,addPost, updatePost, getPost, getPostByID } = require('./api/api');
 
 //
 const app = express();
@@ -29,12 +29,10 @@ Connection(mongoURI);
 //user API
 app.post('/register', signupUser);
 app.post('/login', signinUser);
-app.get('/profile', profile);
-app.post('/logout', logout);
 
 //post API
-app.post('/post', uploadMiddleware.single('file'), addPost);
-app.put('/post',uploadMiddleware.single('file'), updatePost);
+// app.post('/post', uploadMiddleware.single('file'), addPost);
+// app.put('/post',uploadMiddleware.single('file'), updatePost);
 app.get('/post', getPost);
 app.get('/post/:id', getPostByID)
 
