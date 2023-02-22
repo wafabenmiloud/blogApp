@@ -1,5 +1,5 @@
-//const dotenv = require("dotenv");
-//dotenv.config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -22,7 +22,7 @@ const signupUser = async (req, res) => {
     }
 
     //hash password
-    const salt = await bcrypt.genSalt(Number(10));
+    const salt = await bcrypt.genSalt(Number(process.env.SALT));
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
     //save user to db
@@ -36,7 +36,7 @@ const signupUser = async (req, res) => {
       {
         user: savedUser._id,
       },
-      "@ug9;Uhr(mUDN',*%Na+h/UqF5]Ab9bnC~&5U7Cm92gD\{4QM*"
+      process.env.JWT_SECRET
     );
 
     // send token in a cookie
@@ -79,7 +79,7 @@ const signinUser = async (req, res) => {
       {
         user: existingUser._id,
       },
-      "@ug9;Uhr(mUDN',*%Na+h/UqF5]Ab9bnC~&5U7Cm92gD\{4QM*"
+      process.env.JWT_SECRET
     );
 
     // send the token in a HTTP-only cookie
@@ -110,7 +110,7 @@ const authenticateToken = (req, res) => {
     if (!token) {
       return res.json(false);
     }
-    jwt.verify(token, "@ug9;Uhr(mUDN',*%Na+h/UqF5]Ab9bnC~&5U7Cm92gD\{4QM*", {}, async (err, info) => {
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
       if (err) throw err;
       const user = {
         logged : true,

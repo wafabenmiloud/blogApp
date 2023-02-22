@@ -1,4 +1,4 @@
-// const dotenv = require('dotenv');
+const dotenv = require('dotenv');
 const express = require('express');
 const Connection = require('./db/db');
 const cors = require('cors');
@@ -6,18 +6,18 @@ const cookieParser = require('cookie-parser');
 const Router = require('./routes/routes')
 
 const app = express();
-// dotenv.config();
+dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
 //clien side origin
-app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: ['http://localhost:3000', 'https://blog-app-tawny-ten.vercel.app']}));
 
 //upload image
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 //Database
-const mongoURI = "mongodb+srv://wafabenmiloud:tuify049@blog-app.ngmedr4.mongodb.net/blog?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGODB_URI;
 Connection(mongoURI);
 
 //ROUTER
