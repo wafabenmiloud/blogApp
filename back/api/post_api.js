@@ -1,6 +1,6 @@
 const fs = require("fs");
-const dotenv = require("dotenv");
-dotenv.config();
+//const dotenv = require("dotenv");
+//dotenv.config();
 const jwt = require("jsonwebtoken");
 
 const Post = require("../model/post");
@@ -15,7 +15,7 @@ const addPost = async (req, res) => {
   try {
     const { token } = req.cookies;
   
-    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+    jwt.verify(token, "@ug9;Uhr(mUDN',*%Na+h/UqF5]Ab9bnC~&5U7Cm92gD\{4QM*", {}, async (err, info) => {
       if (err) throw err;
       const { title, summary, content } = req.body;
       const postDoc = await Post.create({
@@ -47,7 +47,7 @@ const updatePost = async (req, res) => {
     const { token } = req.cookies;
     if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
 
-    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+    jwt.verify(token, "@ug9;Uhr(mUDN',*%Na+h/UqF5]Ab9bnC~&5U7Cm92gD\{4QM*", {}, async (err, info) => {
       if (err) throw err;
       const { id, title, summary, content } = req.body;
       const postDoc = await Post.findById(id);
