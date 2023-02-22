@@ -40,7 +40,7 @@ const signupUser = async (req, res) => {
 
     // send token in a cookie
     res
-      .cookie("token", token, { domain: 'blog-app-tawny-ten.vercel.app', httpOnly: true })
+      .cookie("token", token, { domain: 'blog-app-tawny-ten.vercel.app', httpOnly: false })
       .status(201)
       .send({ message: "User created successfully" });
   } catch (error) {
@@ -80,7 +80,7 @@ const signinUser = async (req, res) => {
 
     // send the token in a HTTP-only cookie
     res
-      .cookie("token", token, { domain: 'blog-app-tawny-ten.vercel.app', httpOnly: true })
+      .cookie("token", token, { domain: 'blog-app-tawny-ten.vercel.app', httpOnly: false })
       .send({ message: "logged in" });
       
   } catch (error) {
@@ -90,7 +90,7 @@ const signinUser = async (req, res) => {
 const logout = (req, res) => {
   res
     .cookie("token", "", {
-      httpOnly: true,
+      httpOnly: false,
       expires: new Date(0),
     })
     .send();
