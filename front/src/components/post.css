@@ -1,12 +1,13 @@
 div.posts {
-  margin-top: 50px;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
-  gap: 150px;
+  column-gap: 3rem;
 }
 .post {
   display: flex;
-  gap: 100px;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .post:nth-child(2n + 1) {
@@ -29,7 +30,7 @@ div.image::after {
 }
 div.image img {
   width: 100%;
-  max-height: 400px;
+  max-height: 60vh;
   object-fit: cover;
 }
 div.content {
@@ -39,10 +40,10 @@ div.content {
   justify-content: space-around;
 }
 div.content h1 {
-  font-size: 38px;
+  font-size: 2rem;
 }
 div.content .summary {
-  font-size: 18px;
+  font-size: 1rem;
 }
 div.content .author {
   font-weight: 700;
@@ -57,7 +58,7 @@ div.content h6 {
   color: #FF8749;
   cursor: pointer;
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-decoration: none;
   transition: all 235ms ease-in-out;
   user-select: none;
@@ -68,5 +69,26 @@ div.content h6 {
 div.content h6:hover {
   transform: translate3d(0, 2px, 0);
 }
-@media screen and (min-width: 700px) {
+@media screen and (max-width:1024px) {
+  div.posts {
+    margin: 5rem;
+  }
+}
+@media screen and (max-width:600px) {
+  div.posts {
+    margin: 2rem;
+  }
+  .post {
+    display: grid;
+grid-template-columns: 1fr;    
+    margin-top: 2rem;
+  }
+  
+  div.image img {
+    max-height: 40vh;
+  }
+  
+  div.content h1 {
+    font-size: 1.5rem;
+  }
 }

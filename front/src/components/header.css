@@ -1,9 +1,10 @@
 header {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 50px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   align-items: center;
+  padding: 1rem;
 }
 header a {
   text-decoration: none;
@@ -32,9 +33,9 @@ header button {
     border: 1px solid teal;
     box-sizing: border-box;
     color: teal;
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 700;
-    line-height: 24px;
+    line-height: 1rem;
     padding: 16px 23px;
     position: relative;
     text-decoration: none;
@@ -79,4 +80,25 @@ header .link:hover, header .link2:hover{
   }
 header .link2{
   margin-left: 2rem;
+}
+
+
+@media screen and (max-width:600px) {
+  
+ 
+  header .logo {
+    width: 15rem;
+  }
+ 
+  header .logout {
+    font-size: 2rem;
+  }
+ 
+  header button {
+      
+      font-size: 0.8rem;
+      padding: 6px 16px;
+     
+  }
+
 }
