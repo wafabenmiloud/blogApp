@@ -4,7 +4,6 @@ const router = express.Router();
 
 const { signupUser, signinUser, logout, authenticateToken } = require('../api/user_api');
 const { addPost, updatePost, getPost, getPostByID } = require('../api/post_api');
-const auth = require ('../middelware/auth');
 //upload image
 const multer = require('multer');
 
