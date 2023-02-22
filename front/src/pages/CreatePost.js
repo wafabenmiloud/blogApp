@@ -1,17 +1,18 @@
 import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import Editor from "../components/Editor";
 import "./createpost.css";
 import { ImFilePicture } from "react-icons/im";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
+
   async function createNewPost(ev) {
     const data = new FormData();
     data.set("title", title);
@@ -19,11 +20,11 @@ export default function CreatePost() {
     data.set("content", content);
     data.set("file", files[0]);
     ev.preventDefault();
-    axios
-      .post("http://localhost:8000/post", data)
+    await axios
+      .post("http://localhost:2000/post", data)
       .then((response) => {
-        if (response.ok) {
-          setRedirect(true);
+        if (response.status === 200) {
+          navigate('/');
         }
       })
       .catch((error) => {
@@ -31,9 +32,7 @@ export default function CreatePost() {
       });
   }
 
-  if (redirect) {
-    return <Navigate to={"/"} />;
-  }
+  
   return (
     <form className="createpost" onSubmit={createNewPost}>
       <input

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./RegisterPage.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 export default function RegisterPage() {
+	const { getLoggedIn  } = useContext(AuthContext);
   const [data, setData] = useState({
 		firstName: "",
 		lastName: "",
@@ -20,10 +22,10 @@ export default function RegisterPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8000/register";
-			const { data: res } = await axios.post(url, data);
-			navigate("/login");
-			console.log(res.message);
+			const url = "http://localhost:2000/register";
+			await axios.post(url, data);
+			await getLoggedIn();
+			navigate("/");
 		} catch (error) {
 			if (
 				error.response &&

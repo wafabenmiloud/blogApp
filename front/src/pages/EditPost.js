@@ -13,7 +13,7 @@ export default function EditPost() {
   const [redirect,setRedirect] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/post/'+id)
+    axios.get('http://localhost:2000/post/'+id)
     .then(response => {
         setTitle(response.data.title);
         setContent(response.data.content);
@@ -34,9 +34,9 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    axios.put('http://localhost:8000/post', data)
+    axios.put('http://localhost:2000/post', data)
   .then(response => {
-    if (response.ok) {
+    if (response.status === 200) {
       setRedirect(true);
     }
   })

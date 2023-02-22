@@ -1,10 +1,13 @@
 import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { UserContext } from "../UserContext";
+import { useNavigate } from "react-router-dom";
 import "./RegisterPage.css";
 import axios from "axios";
+import AuthContext from "../context/AuthContext";
 
 export default function LoginPage() {
+	const { getLoggedIn } = useContext(AuthContext);
+	const navigate = useNavigate();
+
   const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
 
@@ -15,10 +18,11 @@ export default function LoginPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8000/login";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
-			window.location = "/";
+			const url = "http://localhost:2000/login";
+			await axios.post(url, data);
+			await getLoggedIn();
+			navigate('/');
+			
 		} catch (error) {
 			if (
 				error.response &&
