@@ -30,7 +30,6 @@ const signupUser = async (req, res) => {
       ...req.body,
       password: hashPassword,
     }).save();
-
     //sign token
     const token = jwt.sign(
       {
@@ -44,6 +43,7 @@ const signupUser = async (req, res) => {
       .cookie("token", token, {
         httpOnly: false,
         secure: false,
+        domain: 'https://blog-1h1d.onrender.com'
       })
       .status(201)
       .send({ message: "User created successfully" });
@@ -87,6 +87,8 @@ const signinUser = async (req, res) => {
       .cookie("token", token, {
         httpOnly: false,
         secure: false,
+        domain: 'https://blog-1h1d.onrender.com'
+
       })
       .send({ message: "logged in" });
       
