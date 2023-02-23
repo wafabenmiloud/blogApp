@@ -45,7 +45,6 @@ const signupUser = async (req, res) => {
         domain: 'blog-app-tawny-ten.vercel.app', 
         httpOnly: false,
         SameSite : None, 
-        Secure 
       })
       .status(201)
       .send({ message: "User created successfully" });
@@ -90,7 +89,6 @@ const signinUser = async (req, res) => {
         domain: 'blog-app-tawny-ten.vercel.app', 
         httpOnly: false,
         SameSite : None, 
-        Secure  
       })
       .send({ message: "logged in" });
       
@@ -103,7 +101,6 @@ const logout = (req, res) => {
     .cookie("token", "", {
       httpOnly: false,
       SameSite : None, 
-      Secure,
       expires: new Date(0),
     })
     .send();
