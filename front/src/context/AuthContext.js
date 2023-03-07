@@ -9,7 +9,7 @@ function AuthContextProvider(props) {
 
   async function getLoggedIn() {
     const loggedInRes = await axios.get(
-      "https://blog-1h1d.onrender.com/loggedIn"
+      "https://main--strong-centaur-4d916e.netlify.app/loggedIn"
     );
 
     setLoggedIn(loggedInRes.data.logged);

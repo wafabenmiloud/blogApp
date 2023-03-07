@@ -13,7 +13,7 @@ export default function PostPage() {
 
   useEffect(() => {
     axios
-      .get(`https://blog-1h1d.onrender.com/post/${id}`)
+      .get(`https://main--strong-centaur-4d916e.netlify.app/post/${id}`)
       .then((response) => {
         setPostInfo(response.data);
       })
@@ -27,7 +27,7 @@ export default function PostPage() {
   return (
     <div className="post-page">
       <div className="image">
-        <img src={`https://blog-1h1d.onrender.com/${postInfo.cover}`} alt="" />
+        <img src={`https://main--strong-centaur-4d916e.netlify.app/${postInfo.cover}`} alt="" />
       </div>
 
       <h1>{postInfo.title}</h1>

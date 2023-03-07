@@ -13,7 +13,7 @@ export default function EditPost() {
   const [redirect,setRedirect] = useState(false);
 
   useEffect(() => {
-    axios.get('https://blog-1h1d.onrender.com/post/'+id)
+    axios.get('https://main--strong-centaur-4d916e.netlify.app/post/'+id)
     .then(response => {
         setTitle(response.data.title);
         setContent(response.data.content);
@@ -34,7 +34,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    axios.put('https://blog-1h1d.onrender.com/post', data)
+    axios.put('https://main--strong-centaur-4d916e.netlify.app/post', data)
   .then(response => {
     if (response.status === 200) {
       setRedirect(true);
