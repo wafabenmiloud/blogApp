@@ -14,7 +14,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   async function logout() {
-    await axios.get("https://main--strong-centaur-4d916e.netlify.app/logout");
+    await axios.get("https://blog-1h1d.onrender.com/logout");
     await getLoggedIn();
     navigate("/");
 

@@ -21,7 +21,7 @@ export default function CreatePost() {
     data.set("file", files[0]);
     ev.preventDefault();
     await axios
-      .post("https://main--strong-centaur-4d916e.netlify.app/post", data)
+      .post("https://blog-1h1d.onrender.com/post", data)
       .then((response) => {
         if (response.status === 200) {
           navigate('/');

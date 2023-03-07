@@ -18,7 +18,7 @@ export default function LoginPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "https://main--strong-centaur-4d916e.netlify.app/login";
+			const url = "https://blog-1h1d.onrender.com/login";
 			await axios.post(url, data);
 			await getLoggedIn();
 			navigate('/');

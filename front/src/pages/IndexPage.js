@@ -6,7 +6,7 @@ export default function IndexPage() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     axios
-      .get("https://main--strong-centaur-4d916e.netlify.app/post")
+      .get("https://blog-1h1d.onrender.com/post")
       .then((response) => {
         setPosts(response.data);
       })
