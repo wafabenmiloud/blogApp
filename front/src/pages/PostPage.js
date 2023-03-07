@@ -20,7 +20,7 @@ export default function PostPage() {
       .catch((error) => {
         console.error("An error occurred:", error);
       });
-  }, []);
+  });
 
   if (!postInfo) return "";
 

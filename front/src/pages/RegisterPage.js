@@ -3,8 +3,6 @@ import "./RegisterPage.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import {BiUser} from 'react-icons/bi';
-import {AiOutlineMail} from 'react-icons/ai';
 
 export default function RegisterPage() {
   const { getLoggedIn } = useContext(AuthContext);

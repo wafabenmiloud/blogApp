@@ -22,7 +22,7 @@ export default function EditPost() {
   .catch(error => {
     console.error('An error occurred:', error);
   });
-  },[]);
+  });
 
   async function updatePost(ev) {
     ev.preventDefault();
