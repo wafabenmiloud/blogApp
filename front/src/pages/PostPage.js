@@ -13,7 +13,7 @@ export default function PostPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2000/post/${id}`)
+      .get(`https://blog-1h1d.onrender.com/post/${id}`)
       .then((response) => {
         setPostInfo(response.data);
       })
@@ -27,7 +27,7 @@ export default function PostPage() {
   return (
     <div className="post-page">
       <div className="image">
-        <img src={`http://localhost:2000/${postInfo.cover}`} alt="" />
+        <img src={`https://blog-1h1d.onrender.com/${postInfo.cover}`} alt="" />
       </div>
 
       <h1>{postInfo.title}</h1>

@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //clien side origin
-app.use(cors({credentials: true, origin: ['http://localhost:3000']}));
+app.use(cors({credentials: true, origin: ['http://localhost:3000', 'https://main--strong-centaur-4d916e.netlify.app']}));
 
 //upload image
 app.use('/uploads', express.static(__dirname + '/uploads'));

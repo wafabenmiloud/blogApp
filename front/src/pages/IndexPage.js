@@ -6,7 +6,7 @@ export default function IndexPage() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:2000/post")
+      .get("https://blog-1h1d.onrender.com/post")
       .then((response) => {
         setPosts(response.data);
       })
