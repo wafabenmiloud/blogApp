@@ -43,9 +43,7 @@ const signupUser = async (req, res) => {
       .cookie("token", token, 
       {
         path: '/',
-        secure: false,
         httpOnly: false,
-        sameSite: 'none'
       }
       )
       .status(201)
@@ -90,9 +88,7 @@ const signinUser = async (req, res) => {
       .cookie("token", token,
       {
         path: '/',
-        secure: false,
         httpOnly: false,
-        sameSite: 'none'
       }
       )
       .send({ message: "logged in" });
