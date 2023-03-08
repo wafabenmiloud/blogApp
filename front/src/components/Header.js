@@ -14,7 +14,9 @@ export default function Header() {
   const navigate = useNavigate();
 
   async function logout() {
-    await axios.get("https://blog-1h1d.onrender.com/logout");
+    // await axios.get("https://blog-1h1d.onrender.com/logout");
+    await axios.get("http://localhost:2000/logout");
+
     await getLoggedIn();
     navigate("/");
 

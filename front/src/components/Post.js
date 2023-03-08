@@ -15,7 +15,7 @@ export default function Post({
       <div className="posts">
         <div className="post">
           <div className="image">
-            <img src={"https://blog-1h1d.onrender.com/" + cover} alt="" />
+            <img src={"http://localhost:2000/" + cover} alt="" />
           </div>
 
           <div className="content">
