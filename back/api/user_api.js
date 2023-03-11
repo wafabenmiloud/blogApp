@@ -44,8 +44,7 @@ const signupUser = async (req, res) => {
     res
       .cookie("token", token, 
       {
-        path: '/',
-        httpOnly: false,
+        domain: '.vercel.app',
       }
       )
       .status(201)
@@ -92,8 +91,8 @@ const signinUser = async (req, res) => {
     res
       .cookie("token", token,
       {
-        path: '/',
-        httpOnly: false,
+        domain: '.vercel.app',
+
       }
       )
       .send({ message: "logged in" });
@@ -106,6 +105,8 @@ const logout = (req, res) => {
   res
     .cookie("token", "", { 
       expires: new Date(0),
+      domain: '.vercel.app',
+
     })
     .send();
 };
