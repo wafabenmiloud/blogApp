@@ -33,7 +33,9 @@ const signupUser = async (req, res) => {
     //sign token
     const token = jwt.sign(
       {
-        user: savedUser._id,
+        id: savedUser._id,
+        username:savedUser.username,
+        email:savedUser.email
       },
       process.env.JWT_SECRET
     );
@@ -78,8 +80,11 @@ const signinUser = async (req, res) => {
     // sign the token
     const token = jwt.sign(
       {
-        user: existingUser._id,
+        id: existingUser._id,
+        username:existingUser.username,
+        email:existingUser.email
       },
+    
       process.env.JWT_SECRET
     );
 

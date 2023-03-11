@@ -43,37 +43,9 @@ form.login h1, form.register h1{
   text-align: center;
 }
 
-div.post-page div.image{
-  max-height:300px;
-  display: flex;
-  overflow:hidden;
-}
-div.post-page div.image img{
-  object-fit: cover;
-  object-position: center center;
-  width: 100%;
-}
-div.post-page a{
-  color:#333;
-  text-decoration: underline;
-}
-div.post-page h1{
-  text-align: center;
-  margin: 10px 0 5px;
-}
-div.post-page time{
-  text-align: center;
-  display: block;
-  font-size:1rem;
-  color:#aaa;
-  margin: 10px 0;
-}
-div.post-page div.author{
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: .7rem;
-  font-weight: bold;
-}
+
+
+
 div.content p{
   line-height: 1.7rem;
   margin: 30px 0;
@@ -81,20 +53,68 @@ div.content p{
 div.content li{
   margin-bottom: 10px;
 }
-div.edit-row{
-  text-align: center;
-  margin-bottom: 20px;
-}
-div.post-page a.edit-btn{
-  background-color: #FF8749;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: #fff;
-  padding:15px 30px;
-  border-radius: 5px;
-  text-decoration: none;
-}
+
+
+
 a svg{
   height:20px;
+}
+
+
+.main-desc {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.8);
+  justify-content: space-between;
+  padding: 0px 0px 10px 0px;
+  border-bottom: 1px solid #ddd;
+  margin: 1rem;
+}
+
+.main-filter {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+}
+
+.main-filter input{
+margin-right: 2rem;
+padding: 0.5rem;
+width: 40%;
+}
+.pagination {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  margin: 2rem;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.pagination button {
+  font-size: 0.9rem;
+  background-color: transparent;
+  color: #222;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  color: #FF8749;
+}
+
+.main-filter-item {
+  display: flex;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: small;
+  align-items: center;
+  color: #222;
+  cursor: pointer;
+}
+@media screen and (max-width:600px) {
+  
 }

@@ -3,7 +3,9 @@ const app = express();
 const router = express.Router();
 
 const { signupUser, signinUser, logout, authenticateToken } = require('../api/user_api');
-const { addPost, updatePost, getPost, getPostByID } = require('../api/post_api');
+const { addPost, updatePost, getPost, getPostByID, deletePost } = require('../api/post_api');
+const { addComment } = require('../api/comment_api');
+
 //upload image
 const multer = require('multer');
 
@@ -20,9 +22,13 @@ router.get('/loggedIn',authenticateToken);
 //post API
 router.post('/post', uploadMiddleware.single('file'), addPost);
 router.put('/post',uploadMiddleware.single('file'), updatePost);
-
+router.delete('/post/:id',deletePost);
 router.get('/post', getPost);
 router.get('/post/:id', getPostByID);
+
+//comment API
+router.post('/comment/:id', addComment);
+
 
 module.exports = router;
 

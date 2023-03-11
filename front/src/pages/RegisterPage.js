@@ -7,8 +7,7 @@ import AuthContext from "../context/AuthContext";
 export default function RegisterPage() {
   const { getLoggedIn } = useContext(AuthContext);
   const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -22,7 +21,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "https://blog-1h1d.onrender.com/register";
+      const url = "http://localhost:2000/register";
       await axios.post(url, data);
       await getLoggedIn();
       navigate("/");
@@ -42,19 +41,10 @@ export default function RegisterPage() {
         <h3>Get started</h3>
 			<input
           type="text"
-          placeholder="First Name"
-          name="firstName"
+          placeholder="Username"
+          name="username"
           onChange={handleChange}
-          value={data.firstName}
-          required
-        />
-        
-        <input
-          type="text"
-          placeholder="Last Name"
-          name="lastName"
-          onChange={handleChange}
-          value={data.lastName}
+          value={data.username}
           required
         />
         <input

@@ -5,11 +5,11 @@ const AuthContext = createContext();
 
 function AuthContextProvider(props) {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState({user:"",iat:""})
+  const [userInfo, setUserInfo] = useState({id:"",username:"",email:"",iat:""})
 
   async function getLoggedIn() {
     const loggedInRes = await axios.get(
-      "https://blog-1h1d.onrender.com/loggedIn"
+      "http://localhost:2000/loggedIn"
     );
 
     setLoggedIn(loggedInRes.data.logged);

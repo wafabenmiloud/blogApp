@@ -12,8 +12,7 @@ export default function Footer() {
 
         {" "}
         <span>
-          We'd love to hear from you! Get in touch with us and share your
-          thoughts and opinions on our blog. <br />
+        Connect with a community of programmers from around the world on the CodeQuery app. <br />
         </span>
     </footer>
   );
