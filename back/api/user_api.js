@@ -44,8 +44,10 @@ const signupUser = async (req, res) => {
     res
       .cookie("token", token, 
       {
-        Secure:true,
-        SameSite:'Strict'
+        httpOnly: true,
+  secure: true,
+  sameSite: 'strict',
+  domain: 'blog-1h1d.onrender.com'
       }
       )
       .status(201)
@@ -92,8 +94,10 @@ const signinUser = async (req, res) => {
     res
       .cookie("token", token,
       {
-        Secure:true,
-        SameSite:'Strict'
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+        domain: 'blog-1h1d.onrender.com'
       }
       )
       .send({ message: "logged in" });
@@ -107,8 +111,10 @@ const logout = (req, res) => {
     .cookie("token", "", { 
       expires: new Date(0),
       
-        Secure:true,
-        SameSite:'Strict'
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      domain: 'blog-1h1d.onrender.com'
       
     })
     .send();
