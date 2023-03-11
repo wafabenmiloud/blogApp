@@ -4,6 +4,8 @@ dotenv.config();
 const jwt = require("jsonwebtoken");
 
 const Post = require("../model/post");
+const Answer = require("../model/Answers");
+const Comment = require("../model/Comments");
 
 const addPost = async (req, res) => {
   const { originalname, path } = req.file;
@@ -82,11 +84,35 @@ const getPost = async (req, res) => {
       .limit(20)
   );
 };
+// const getPostByID = async (req, res) => {
+//   const { id } = req.params;
+//   const postDoc = await Post.findById(id).populate("author", ["username","email"]);
+//   res.json(postDoc);
+// };
 const getPostByID = async (req, res) => {
   const { id } = req.params;
-  const postDoc = await Post.findById(id).populate("author", ["username","email"]);
-  res.json(postDoc);
+
+  const postDoc = await Post.findById(id)
+    .populate("author", ["username", "email"])
+    .lean();
+
+  const comments = await Comment.find({ post_id: id })
+    .populate("author", ["username", "email"])
+    .sort({ created_at: -1 })
+    .lean();
+
+  const answers = await Answer.find({ post_id: id })
+    .populate("author", ["username", "email"])
+    .sort({ created_at: -1 })
+    .lean();
+
+  res.json({
+    ...postDoc,
+    comments,
+    answers,
+  });
 };
+
 const deletePost = async (req, res) => {
   try {
     const { token } = req.cookies;

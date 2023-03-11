@@ -21,7 +21,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:2000/register";
+      const url = "https://blog-1h1d.onrender.com/register";
       await axios.post(url, data);
       await getLoggedIn();
       navigate("/");

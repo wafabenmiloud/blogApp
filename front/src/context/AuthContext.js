@@ -9,7 +9,7 @@ function AuthContextProvider(props) {
 
   async function getLoggedIn() {
     const loggedInRes = await axios.get(
-      "http://localhost:2000/loggedIn"
+      "https://blog-1h1d.onrender.com/loggedIn"
     );
 
     setLoggedIn(loggedInRes.data.logged);
