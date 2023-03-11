@@ -23,7 +23,7 @@ export default function PostPage() {
   //fetch post info
   useEffect(() => {
     axios
-      .get(`https://blog-app-c9lm.vercel.app/post/${id}`)
+      .get(`https://blog-1h1d.onrender.com/post/${id}`)
       .then((response) => {
         setPostInfo(response.data);
       })
@@ -35,7 +35,7 @@ export default function PostPage() {
   //delete post
   async function handleDelete(id) {
     try {
-      const response = await axios.delete(`https://blog-app-c9lm.vercel.app/post/${id}`);
+      const response = await axios.delete(`https://blog-1h1d.onrender.com/post/${id}`);
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -51,7 +51,7 @@ export default function PostPage() {
         author: userInfo.id,
       };
       await axios
-        .post(`https://blog-app-c9lm.vercel.app/comment/${postInfo._id}`, body)
+        .post(`https://blog-1h1d.onrender.com/comment/${postInfo._id}`, body)
         .then((res) => {
           setComment("");
           setShow(false);
@@ -86,7 +86,7 @@ export default function PostPage() {
       },
     };
     await axios
-      .post('https://blog-app-c9lm.vercel.app/answer', body, config)
+      .post('https://blog-1h1d.onrender.com/answer', body, config)
       .then(() => {
         setAnswer("");
         // getUpdatedAnswer();
@@ -98,7 +98,7 @@ export default function PostPage() {
     <>
       <div className="post-page">
         <div className="image">
-          <img src={`https://blog-app-c9lm.vercel.app/${postInfo?.cover}`} alt="" />
+          <img src={`https://blog-1h1d.onrender.com/${postInfo?.cover}`} alt="" />
         </div>
 
         <h1>{postInfo.title}</h1>

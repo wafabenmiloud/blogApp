@@ -43,7 +43,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   async function logout() {
-    await axios.get("https://blog-app-c9lm.vercel.app/logout");
+    await axios.get("https://blog-1h1d.onrender.com/logout");
 
     await getLoggedIn();
     navigate("/");

@@ -14,7 +14,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     axios
-      .get("https://blog-app-c9lm.vercel.app/post")
+      .get("https://blog-1h1d.onrender.com/post")
       .then((response) => {
         setPosts(response.data);
         setSearchedPosts(response.data); // update searchedPosts after fetching data
