@@ -16,7 +16,7 @@ export default function EditPost() {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    axios.get('https://blog-1h1d.onrender.com/post/'+id)
+    axios.get('https://blog-app-c9lm.vercel.app/post/'+id)
     .then(response => {
         setTitle(response.data.title);
         setContent(response.data.content);
@@ -40,7 +40,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    axios.put('https://blog-1h1d.onrender.com/post', data)
+    axios.put('https://blog-app-c9lm.vercel.app/post', data)
   .then(response => {
     if (response.status === 200) {
       setRedirect(true);

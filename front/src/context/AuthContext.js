@@ -9,7 +9,7 @@ function AuthContextProvider(props) {
 
   async function getLoggedIn() {
     const loggedInRes = await axios.get(
-      "https://blog-1h1d.onrender.com/loggedIn"
+      "https://blog-app-c9lm.vercel.app/loggedIn"
     );
 
     setLoggedIn(loggedInRes.data.logged);
