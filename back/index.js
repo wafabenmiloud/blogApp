@@ -11,10 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //clien side origin
-app.use(cors({credentials: true, origin: ['https://blog-xj3p.onrender.com']}));
-
-  app.set("trust proxy", 1);
-
+app.use(cors({credentials: true, origin: ['http://localhost:3000', 'https://blog-xj3p.onrender.com']}));
 
 //upload image
 app.use('/uploads', express.static(__dirname + '/uploads'));
