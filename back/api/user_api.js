@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User, validate, validatee } = require("../model/user");
 
+
 const signupUser = async (req, res) => {
   try {
     //validation
@@ -44,9 +45,9 @@ const signupUser = async (req, res) => {
     res
       .cookie("token", token, 
       {
-        httpOnly: true,
+        httpOnly: false,
   secure: true,
-  sameSite: 'strict',
+  sameSite: 'none',
   domain: 'blog-1h1d.onrender.com'
       }
       )
@@ -94,9 +95,9 @@ const signinUser = async (req, res) => {
     res
       .cookie("token", token,
       {
-        httpOnly: true,
+        httpOnly: false,
         secure: true,
-        sameSite: 'strict',
+        sameSite: 'none',
         domain: 'blog-1h1d.onrender.com'
       }
       )
@@ -111,9 +112,9 @@ const logout = (req, res) => {
     .cookie("token", "", { 
       expires: new Date(0),
       
-      httpOnly: true,
+      httpOnly: false,
       secure: true,
-      sameSite: 'strict',
+      sameSite: 'none',
       domain: 'blog-1h1d.onrender.com'
       
     })
