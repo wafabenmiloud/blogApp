@@ -11,12 +11,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 //clien side origin
-// app.use(cors({credentials: true, origin: ['https://blog-xj3p.onrender.com']}));
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://blog-xj3p.onrender.com');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
+app.use(cors({credentials: true, origin: ['https://blog-xj3p.onrender.com']}));
+
   app.set("trust proxy", 1);
 
 
