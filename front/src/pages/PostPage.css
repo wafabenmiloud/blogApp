@@ -82,6 +82,7 @@
     background-color: #0151f028;
     color: teal;
     border-radius: 2px;
+    font-size: 0.7rem;
   }
   
   .comments > p {
@@ -104,6 +105,57 @@
     margin: 1rem;
     color: #FF8749;
     font-size: 1rem;
+  }
+  .title textarea{
+      margin: "5px 0px";
+      padding: "10px";
+      border: "1px solid rgba(0, 0, 0, 0.2)";
+      border-radius: 3px;
+      outline: "none";
+      width:80%;
+
+  }
+  .like__col{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  @media screen and (max-width:800px) {
+    .post-page{
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
+   
+    .post-page h1{
+      text-align: center;
+      margin: 10px;
+      font-size: 1rem;
+    }
+    .post-page .rrow{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .comment__button{
+      background-color: #FF8749;
+      width: 30%;
+      font-size: 0.8rem;
+    }
+    .main-answer h4{
+      margin: 1rem;
+      color: #FF8749;
+      font-size: 1rem;
+    }
+    .title textarea{
+        margin: "5px 0px";
+        padding: "10px";
+        border: "1px solid rgba(0, 0, 0, 0.2)";
+        border-radius: 3px;
+        outline: "none";
+        width:80%;
+  
+    }
   }
   /*end postpage*/
   

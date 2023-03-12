@@ -3,7 +3,7 @@ import ReactQuill from "react-quill";
 export default function Editor({value,onChange}) {
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [
         { list: 'ordered' },
@@ -11,8 +11,12 @@ export default function Editor({value,onChange}) {
         { indent: '-1' },
         { indent: '+1' },
       ],
-      ['link', 'image'],
+      ['code-block', 'formula'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
       ['clean'],
+      ['undo', 'redo'],
+      ['horizontal']
     ],
   };
   return (

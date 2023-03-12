@@ -5,6 +5,7 @@ const answerSchema = new mongoose.Schema({
   post_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "posts",
+    
   },
   answer: String,
   created_at: {

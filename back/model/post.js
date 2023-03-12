@@ -5,6 +5,9 @@ const PostSchema = new Schema({
   title:String,
   summary:String,
   content:String,
+  views:{type:Number,    default: 0  },
+  likes: [{ type: Schema.Types.ObjectId, ref: 'users' }],
+  dislikes: [{ type: Schema.Types.ObjectId, ref: 'users' }],  
   tags: [],
   cover:String,
   author:{type:Schema.Types.ObjectId, ref:'users'},
@@ -15,7 +18,5 @@ const PostSchema = new Schema({
 }, {
   timestamps: true,
 });
-
 const Post = model('posts', PostSchema);
-
 module.exports = Post;

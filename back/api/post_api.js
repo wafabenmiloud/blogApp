@@ -84,11 +84,6 @@ const getPost = async (req, res) => {
       .limit(20)
   );
 };
-// const getPostByID = async (req, res) => {
-//   const { id } = req.params;
-//   const postDoc = await Post.findById(id).populate("author", ["username","email"]);
-//   res.json(postDoc);
-// };
 const getPostByID = async (req, res) => {
   const { id } = req.params;
 
@@ -136,10 +131,89 @@ const deletePost = async (req, res) => {
     res.status(401).json({ errorMessage: "Unauthorized" });
   }
 };
+const views = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    // Increment views counter
+    post.views += 1;
+    await post.save();
+    res.json(post.views);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+}
+const like = async (req, res) => {
+  try {
+    const { token } = req.cookies;
+    if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
+
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) throw err;
+    
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    const userId = info.id;
+    const userLikes = post.likes.indexOf(userId) !== -1;
+    const userDislikes = post.dislikes.indexOf(userId) !== -1;
+    if (userLikes) {
+      post.likes.pull(userId);
+    } else {
+      if (userDislikes) {
+        post.dislikes.pull(userId);
+      }
+      post.likes.push(userId);
+    }
+    await post.save();
+    res.send(post);
+    })
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
+const dislike = async (req, res) => {
+  try {
+    const { token } = req.cookies;
+    if (!token) return res.status(401).json({ errorMessage: "Unauthorized" });
+
+    jwt.verify(token, process.env.JWT_SECRET, {}, async (err, info) => {
+      if (err) throw err;
+     const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    const userId = info.id;
+    const userLikes = post.likes.indexOf(userId) !== -1;
+    const userDislikes = post.dislikes.indexOf(userId) !== -1;
+
+    if (userDislikes) {
+      post.dislikes.pull(userId);
+    } else {
+      if (userLikes) {
+        post.likes.pull(userId);
+      }
+      post.dislikes.push(userId);
+    }
+
+    await post.save();
+    res.send(post);
+    
+    })
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
 module.exports = {
   addPost,
   updatePost,
   getPost,
   getPostByID,
-  deletePost
+  deletePost,
+  views,
+  like,
+  dislike
 };

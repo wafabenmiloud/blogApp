@@ -48,7 +48,7 @@ const signupUser = async (req, res) => {
         httpOnly: false,
   secure: true,
   sameSite: 'none',
-  domain: 'blog-1h1d.onrender.com'
+  // domain: 'blog-1h1d.onrender.com'
       }
       )
       .status(201)
@@ -98,7 +98,7 @@ const signinUser = async (req, res) => {
         httpOnly: false,
         secure: true,
         sameSite: 'none',
-        domain: 'blog-1h1d.onrender.com'
+        // domain: 'blog-1h1d.onrender.com'
       }
       )
       .send({ message: "logged in" });
@@ -115,7 +115,7 @@ const logout = (req, res) => {
       httpOnly: false,
       secure: true,
       sameSite: 'none',
-      domain: 'blog-1h1d.onrender.com'
+      // domain: 'blog-1h1d.onrender.com'
       
     })
     .send();

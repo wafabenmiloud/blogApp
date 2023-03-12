@@ -47,6 +47,7 @@ div.image img {
   align-items: center;
   color: black;
   text-align: justify;
+  gap: 0.5rem;
 }
 
 
@@ -117,12 +118,27 @@ div.content .summary {
   border-radius: 3px;
   outline: none;
 }
-.tag{
-  color: #000;
-  background-color: #D5EDF6;
-  font-size: 1rem;
+
+.taggs {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tagg {
+  background-color: #0151f028;
+  color: teal;
+    border-radius: 4px;
+  padding: 4px;
+  margin-right: 4px;
+  font-size: 0.7rem;
   
 }
+
+
+
 .tags__title > input::placeholder {
   color: #ddd;
 }
@@ -137,7 +153,14 @@ div.content .summary {
   align-items: center;
   list-style: none;
 }
+.like-btn{
+  font-size: 1.5rem;
+  color: #222;
+}
 
+.like-btn:hover{
+  cursor: pointer;
+}
 @media screen and (max-width:1024px) {
   div.posts {
     margin: 5rem;
