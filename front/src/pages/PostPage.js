@@ -13,7 +13,7 @@ import {
 import AuthContext from "../context/AuthContext";
 import "./PostPage.css";
 import Editor from "../components/Editor";
-
+import banner from "../assets/banner.jpg"
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { userInfo } = useContext(AuthContext);
@@ -131,7 +131,8 @@ export default function PostPage() {
     <>
       <div className="post-page">
         <div className="image">
-          <img src={`https://blog-1h1d.onrender.com/${postInfo?.cover}`} alt="" />
+          {/* <img src={`https://blog-1h1d.onrender.com/${postInfo?.cover}`} alt="" /> */}
+          <img src={banner} alt="" />
         </div>
 
         <h1>{postInfo.title}</h1>

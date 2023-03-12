@@ -48,7 +48,8 @@ export default function Header() {
     await getLoggedIn();
     navigate("/");
 
-     
+    window.location.reload();
+
   }
 
   return (

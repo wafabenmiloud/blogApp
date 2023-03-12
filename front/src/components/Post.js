@@ -109,9 +109,9 @@ export default function Post({
                 </ul>
               </div>
 
-              <div className="image">
+              {/* <div className="image">
                 <img src={"https://blog-1h1d.onrender.com/" + cover} alt="" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
