@@ -204,8 +204,8 @@ export default function PostPage() {
             postInfo.comments.map((_qd) => (
               <p key={_qd?._id}>
                 {_qd.comment} <span>@ {_qd.author.username}</span>{" "}
-                <AiFillEdit color="teal" />
-                <AiFillDelete color="teal" />{" "}
+                {/* <AiFillEdit color="teal" />
+                <AiFillDelete color="teal" />{" "} */}
               </p>
             ))}
         </div>
@@ -226,12 +226,12 @@ export default function PostPage() {
         )}
       </div>
 
-      <div className="all-questions">
+      {/* <div className="all-questions">
         <h2>{postInfo && postInfo.answers.length} Answers</h2>
         {postInfo?.answers.map((_q) => (
           <>
             <div key={_q._id} className="all-questions-container">
-              {/* <div className="all-questions-left">
+              <div className="all-questions-left">
                 <div className="all-options">
                   <p className="arrow">▲</p>
 
@@ -241,7 +241,7 @@ export default function PostPage() {
 
                   <BsFillBookmarkPlusFill />
                 </div>
-              </div> */}
+              </div>
               <div className="question-answer">
                 <div dangerouslySetInnerHTML={{ __html: _q.answer }}></div>
 
@@ -255,9 +255,9 @@ export default function PostPage() {
             </div>
           </>
         ))}
-      </div>
+      </div> */}
 
-      <div>
+      {/* <div>
         <div className="main-answer">
           <h4>Your Answer</h4>
           <Editor value={answer} onChange={handleQuill} />
@@ -269,7 +269,7 @@ export default function PostPage() {
         >
           Post your answer
         </button>
-      </div>
+      </div> */}
     </>
   );
 }
