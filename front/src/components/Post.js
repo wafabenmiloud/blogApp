@@ -98,7 +98,13 @@ export default function Post({
             </div>
             <div className="column">
               <div className="content">
-                <p className="summary">{summary}</p>
+                <p className="summary">{summary} <br/>  <Link
+              className="seemore"
+              to={`/post/${_id}`}
+              onClick={incrementViews}
+            >
+              See more...
+            </Link></p>
 
                 <ul className="taggs">
                   {tags[0].split(",").map((tag, ind) => (

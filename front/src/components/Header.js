@@ -48,8 +48,9 @@ export default function Header() {
     await getLoggedIn();
     navigate("/");
 
-    window.location.reload();
-
+    if (window.location.pathname === "/") {
+      window.location.reload();
+    }
   }
 
   return (

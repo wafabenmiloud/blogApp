@@ -73,6 +73,14 @@ div.content {
 .title__link h1 {
   font-size: 1.5rem;
 }
+.seemore{
+  font-size: 0.7rem;
+  text-decoration: none;
+  color: #FF8749;
+}
+.seemore:hover{
+  text-decoration: underline;
+}
 div.content .summary {
   font-size: 0.9rem;
 }
