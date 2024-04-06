@@ -30,5 +30,5 @@ Connection(mongoURI);
 app.use('/', Router);
 
 // server
-const PORT = 2000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server is running successfully on PORT ${PORT}`));
